@@ -1,0 +1,119 @@
+/* BODY */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #333;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.nav-right a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout {
+    background: red;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+/* TEXT */
+.title {
+    margin: 20px;
+    color: white;
+}
+
+.welcome {
+    margin-left: 20px;
+    color: #eee;
+}
+
+.section {
+    margin: 20px;
+    color: white;
+}
+
+/* GRID */
+.course-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 300px));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.course-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+.course-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+/* BODY */
+.course-body {
+    padding: 15px;
+}
+
+/* PRICE */
+.price {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* TAG */
+.tag {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* BUTTON */
+button {
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* DANGER */
+.danger {
+    background: linear-gradient(90deg, #ff0000, #cc0000);
+}
