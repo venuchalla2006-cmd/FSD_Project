@@ -17,7 +17,7 @@ const Login = ({ setUser }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8083/api/login', {
+      const response = await axios.post('https://fsd-project-2-gwhu.onrender.com/api/login', {
         username,
         password
       });
@@ -47,7 +47,7 @@ const Login = ({ setUser }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8083/api/verify-otp', {
+      const response = await axios.post('https://fsd-project-2-gwhu.onrender.com/api/verify-otp', {
         username,
         otp
       });

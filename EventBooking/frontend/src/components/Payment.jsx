@@ -21,7 +21,7 @@ const Payment = () => {
     // Simulate payment gateway delay before API call
     setTimeout(async () => {
       try {
-        await axios.post('http://localhost:8083/api/book-ticket', bookingPayload);
+        await axios.post('https://fsd-project-2-gwhu.onrender.com/api/book-ticket', bookingPayload);
         setProcessing(false);
         setSuccess(true);
       } catch (err) {

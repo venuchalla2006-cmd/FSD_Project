@@ -12,7 +12,7 @@ const UserDashboard = ({ user }) => {
 
   const fetchMyBookings = async () => {
     try {
-      const response = await axios.get(`http://localhost:8083/api/bookings/user/${user.username}`);
+      const response = await axios.get(`https://fsd-project-2-gwhu.onrender.com/api/bookings/user/${user.username}`);
       setBookings(response.data);
       setLoading(false);
     } catch (err) {
