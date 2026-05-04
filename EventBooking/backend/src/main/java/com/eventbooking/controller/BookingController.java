@@ -71,7 +71,9 @@ public class BookingController {
                     "Tickets: " + savedBooking.getTicketsBooked() + "\n" +
                     "Total Paid: $" + savedBooking.getTotalAmount() + "\n\n" +
                     "Thank you for choosing AuraTix!";
-            emailService.sendEmail(savedBooking.getEmail(), "Booking Confirmation & Payment Receipt - AuraTix", emailContent);
+            // Note: Email sending is disabled because Render's free tier blocks SMTP ports
+            // emailService.sendEmail(savedBooking.getEmail(), "Booking Confirmation & Payment Receipt - AuraTix", emailContent);
+            System.out.println("Booking successful for " + savedBooking.getName() + ". Email disabled for Render demo.");
         }
 
         return ResponseEntity.ok(savedBooking);

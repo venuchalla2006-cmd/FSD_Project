@@ -37,14 +37,14 @@ public class AuthController {
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User does not have an email setup for OTP.");
                 }
 
-                // Generate 6-digit OTP
-                String otp = String.format("%06d", new Random().nextInt(999999));
+                // Hardcode OTP to 123456 for demo purposes since Render blocks email ports
+                String otp = "123456";
                 user.setOtp(otp);
                 user.setOtpExpiryTime(LocalDateTime.now().plusMinutes(5));
                 userRepository.save(user);
 
-                // Send OTP email
-                emailService.sendEmail(user.getEmail(), "Your Login OTP - AuraTix", "Hello " + user.getUsername() + ",\n\nYour OTP for login is: " + otp + "\n\nThis OTP is valid for 5 minutes.");
+                // Note: Email sending is disabled because Render's free tier blocks SMTP ports
+                System.out.println("Login OTP for " + user.getUsername() + " is: " + otp);
 
                 Map<String, Object> response = new HashMap<>();
                 response.put("requiresOtp", true);
@@ -79,13 +79,8 @@ public class AuthController {
 
         userRepository.save(newUser);
         
-        if (email != null && !email.trim().isEmpty()) {
-            try {
-                emailService.sendEmail(email, "Welcome to AuraTix!", "Hello " + username + ",\n\nWelcome to AuraTix! Your account has been successfully created.\n\nEnjoy booking the best events!");
-            } catch (Exception e) {
-                System.err.println("Failed to send welcome email: " + e.getMessage());
-            }
-        }
+        // Note: Email sending is disabled because Render's free tier blocks SMTP ports
+        System.out.println("Account created successfully for: " + username);
         
         return ResponseEntity.ok(newUser);
     }
@@ -105,8 +100,8 @@ public class AuthController {
                     user.setOtpExpiryTime(null);
                     userRepository.save(user);
 
-                    // Send successful login alert
-                    emailService.sendEmail(user.getEmail(), "New Login Alert - AuraTix", "Hello " + user.getUsername() + ",\n\nA new login to your AuraTix account was just detected.\n\nIf this was you, you can ignore this message.");
+                    // Note: Email sending is disabled because Render's free tier blocks SMTP ports
+                    System.out.println("Successful login for: " + user.getUsername());
 
                     return ResponseEntity.ok(user);
                 } else {
