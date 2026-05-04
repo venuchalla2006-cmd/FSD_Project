@@ -8,6 +8,7 @@ import BookingSummary from './components/BookingSummary';
 import Payment from './components/Payment';
 import AdminDashboard from './components/AdminDashboard';
 import UserDashboard from './components/UserDashboard';
+import SpaceBackground from './components/SpaceBackground';
 
 function App() {
   const [user, setUser] = useState(null); // null, { username: '...', role: 'USER' | 'ADMIN' }
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <Router>
+      <SpaceBackground />
       <nav className="navbar">
         <Link to="/" className="nav-brand">AuraTix</Link>
         <div className="nav-links">

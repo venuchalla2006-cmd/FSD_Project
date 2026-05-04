@@ -1,0 +1,78 @@
+.space-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+.star-layer {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: rotateStars 200s linear infinite;
+  opacity: 0.8;
+}
+
+.star-layer-2 {
+  background-image: 
+    radial-gradient(3px 3px at 50px 50px, #fff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 150px 150px, #aaa, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 250px 200px, #fff, rgba(0,0,0,0));
+  background-size: 300px 300px;
+  animation: rotateStars 300s linear infinite reverse;
+  opacity: 0.5;
+}
+
+@keyframes rotateStars {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.asteroid {
+  position: absolute;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%238b939c"><path d="M40 10 Q 70 5, 80 30 Q 95 60, 70 80 Q 40 95, 10 70 Q 5 40, 20 20 Z"/><path d="M30 30 Q 40 25, 45 35 Q 35 45, 25 35 Z" fill="%236e757d"/><path d="M60 60 Q 70 55, 75 65 Q 65 75, 55 65 Z" fill="%236e757d"/></svg>') no-repeat center;
+  background-size: contain;
+  animation: flyAsteroid linear infinite;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+}
+
+.a1 { top: -100px; left: 15%; width: 80px; height: 80px; animation-duration: 25s; animation-delay: 0s; }
+.a2 { top: -100px; left: 45%; width: 45px; height: 45px; animation-duration: 35s; animation-delay: 10s; }
+.a3 { top: -100px; left: 75%; width: 120px; height: 120px; animation-duration: 40s; animation-delay: 5s; }
+.a4 { top: -100px; left: 90%; width: 60px; height: 60px; animation-duration: 28s; animation-delay: 15s; }
+.a5 { top: -100px; left: 5%; width: 30px; height: 30px; animation-duration: 20s; animation-delay: 2s; }
+
+@keyframes flyAsteroid {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); }
+  100% { transform: translateY(120vh) translateX(-30vw) rotate(360deg); }
+}
+
+/* Ensure body is transparent to show the fixed background */
+body, #root {
+  background: transparent !important;
+}
+
+[data-theme="light"] .space-bg-container {
+  /* Give light mode a daytime sky instead of space, or keep it space-themed */
+  background: radial-gradient(ellipse at bottom, #87CEEB 0%, #1E90FF 100%);
+}
+[data-theme="light"] .star-layer {
+  /* Clouds for light mode? Let's just fade them out */
+  opacity: 0.2;
+}
