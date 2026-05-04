@@ -80,7 +80,11 @@ public class AuthController {
         userRepository.save(newUser);
         
         if (email != null && !email.trim().isEmpty()) {
-            emailService.sendEmail(email, "Welcome to AuraTix!", "Hello " + username + ",\n\nWelcome to AuraTix! Your account has been successfully created.\n\nEnjoy booking the best events!");
+            try {
+                emailService.sendEmail(email, "Welcome to AuraTix!", "Hello " + username + ",\n\nWelcome to AuraTix! Your account has been successfully created.\n\nEnjoy booking the best events!");
+            } catch (Exception e) {
+                System.err.println("Failed to send welcome email: " + e.getMessage());
+            }
         }
         
         return ResponseEntity.ok(newUser);
