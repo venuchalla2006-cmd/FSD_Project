@@ -1,8 +1,9 @@
 package com.eventbooking.service;
 
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,13 +19,17 @@ public class EmailService {
         }
         
         try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@auratix.com"); // Set your email or use spring.mail.username
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(text);
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            
+            helper.setFrom("noreply@auratix.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            // Set true to enable HTML formatting!
+            helper.setText(text, true); 
+            
             mailSender.send(message);
-            System.out.println("Email sent successfully to " + to);
+            System.out.println("Professional HTML email sent successfully to " + to);
         } catch (Exception e) {
             System.err.println("Failed to send email to " + to + ": " + e.getMessage());
             System.err.println("This is expected if valid SMTP credentials are not configured in application.properties.");

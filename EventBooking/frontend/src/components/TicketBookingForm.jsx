@@ -23,7 +23,7 @@ const TicketBookingForm = ({ user }) => {
 
   const fetchEvent = async () => {
     try {
-      const response = await axios.get(`https://fsd-project-2-gwhu.onrender.com/api/event/${eventId}`);
+      const response = await axios.get(`http://localhost:8083/api/event/${eventId}`);
       setEvent(response.data);
     } catch (err) {
       console.error('Failed to fetch event details', err);

@@ -12,7 +12,7 @@ const AdminDashboard = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await axios.get('https://fsd-project-2-gwhu.onrender.com/api/bookings');
+      const response = await axios.get('http://localhost:8083/api/bookings');
       setBookings(response.data);
       setLoading(false);
     } catch (err) {
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
     setEventSuccess('');
     setEventError('');
     try {
-      await axios.post('https://fsd-project-2-gwhu.onrender.com/api/event', eventForm);
+      await axios.post('http://localhost:8083/api/event', eventForm);
       setEventSuccess('Event created successfully!');
       setEventForm({ name: '', department: '', venue: '', dateTime: '', price: 0, availableTickets: 100, imageUrl: '' });
       // Clear success message after 3 seconds

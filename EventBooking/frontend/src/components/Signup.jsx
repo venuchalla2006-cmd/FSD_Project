@@ -24,7 +24,7 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      await axios.post('https://fsd-project-2-gwhu.onrender.com/api/register', {
+      await axios.post('http://localhost:8083/api/register', {
         username,
         email,
         password

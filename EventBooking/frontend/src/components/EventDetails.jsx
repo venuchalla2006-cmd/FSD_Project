@@ -16,7 +16,7 @@ const EventDetails = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('https://fsd-project-2-gwhu.onrender.com/api/event');
+      const response = await axios.get('http://localhost:8083/api/event');
       setEvents(response.data);
       setLoading(false);
     } catch (err) {

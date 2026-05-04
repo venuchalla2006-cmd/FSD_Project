@@ -65,15 +65,18 @@ public class BookingController {
         Booking savedBooking = bookingRepository.save(booking);
 
         if (savedBooking.getEmail() != null && !savedBooking.getEmail().isEmpty()) {
-            String emailContent = "Hello " + savedBooking.getName() + ",\n\n" +
-                    "Your payment has been successfully completed and your booking is confirmed!\n\n" +
-                    "Event: " + event.getName() + "\n" +
-                    "Tickets: " + savedBooking.getTicketsBooked() + "\n" +
-                    "Total Paid: $" + savedBooking.getTotalAmount() + "\n\n" +
-                    "Thank you for choosing AuraTix!";
-            // Note: Email sending is disabled because Render's free tier blocks SMTP ports
-            // emailService.sendEmail(savedBooking.getEmail(), "Booking Confirmation & Payment Receipt - AuraTix", emailContent);
-            System.out.println("Booking successful for " + savedBooking.getName() + ". Email disabled for Render demo.");
+            String emailHtml = "<div style=\"font-family: 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;\">" +
+                    "<div style=\"background: linear-gradient(135deg, #10b981, #047857); padding: 20px; text-align: center;\">" +
+                    "<h1 style=\"color: #ffffff; margin: 0; font-size: 24px;\">Booking Confirmed!</h1></div>" +
+                    "<div style=\"padding: 30px; color: #333333;\"><p style=\"font-size: 16px;\">Hello <strong>" + savedBooking.getName() + "</strong>,</p>" +
+                    "<p style=\"font-size: 16px;\">Your payment has been successfully processed and your booking is confirmed.</p>" +
+                    "<div style=\"background-color: #f3f4f6; border-radius: 8px; padding: 20px; margin: 25px 0;\">" +
+                    "<h3 style=\"margin-top: 0; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;\">Receipt Details</h3>" +
+                    "<p><strong>Event:</strong> " + event.getName() + "</p>" +
+                    "<p><strong>Tickets Booked:</strong> " + savedBooking.getTicketsBooked() + "</p>" +
+                    "<p style=\"font-size: 18px; color: #10b981; font-weight: bold; margin-top: 15px;\">Total Paid: $" + savedBooking.getTotalAmount() + "</p></div>" +
+                    "<p style=\"font-size: 14px; color: #6b7280;\">Thank you for choosing AuraTix. We look forward to seeing you at the event!</p></div></div>";
+            emailService.sendEmail(savedBooking.getEmail(), "Booking Confirmation & Receipt - AuraTix", emailHtml);
         }
 
         return ResponseEntity.ok(savedBooking);
